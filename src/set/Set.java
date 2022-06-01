@@ -1,9 +1,10 @@
 package set;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Set {
-    private ArrayList<Integer> elements;
+    private final ArrayList<Integer> elements;
 
 
     public Set() {

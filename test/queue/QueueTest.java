@@ -103,6 +103,9 @@ public class QueueTest {
         queue.enqueue(33);
         queue.enqueue(33);
         queue.enqueue(33);
+        queue.enqueue(33);
+        queue.enqueue(33);
+        queue.enqueue(33);
         assertThrows(FilledUpQueueException.class, () -> queue.enqueue(100));
     }
 
@@ -110,23 +113,31 @@ public class QueueTest {
     void canPeekLastElementTest() {
         queue.enqueue(34);
         queue.enqueue(67);
-        queue.enqueue(44);
-        queue.enqueue(44);
-        queue.enqueue(44);
-        queue.enqueue(44);
-        queue.enqueue(55);
+        queue.enqueue(23);
+        queue.enqueue(85);
+        queue.enqueue(12);
+        queue.enqueue(24);
+        queue.enqueue(75);
         int element = queue.dequeue();
 
         assertEquals(34, element);
-        assertEquals(55, queue.peekFromBehind());
+        assertEquals(0, queue.peekFromBehind());
         element = queue.dequeue();
         assertEquals(67, element);
-        assertEquals(55, queue.peekFromBehind());
+        assertEquals(0, queue.peekFromBehind());
 
         element = queue.peek();
-        assertEquals(44, element);
+        assertEquals(23, element);
 
         int size = queue.size();
         assertEquals(5, size);
+        queue.enqueue(100);
+        queue.enqueue(200);
+        queue.enqueue(200);
+        queue.enqueue(200);
+        queue.enqueue(200);
+        assertEquals(10, queue.size());
+        assertEquals(23, queue.peek());
+        assertEquals(200, queue.peekFromBehind());
     }
 }

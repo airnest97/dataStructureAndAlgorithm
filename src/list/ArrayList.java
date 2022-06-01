@@ -90,4 +90,10 @@ public class ArrayList implements List {
             db[j] = db[j + 1];
         }
     }
+
+    public void clear() {
+        for (int i = 0; i < length; i++) {
+            db[i] = null;
+        }
+    }
 }
