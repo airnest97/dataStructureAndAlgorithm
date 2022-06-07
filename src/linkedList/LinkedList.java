@@ -2,7 +2,6 @@ package linkedList;
 
 public class LinkedList<T> {
     private Node first;
-    private Node last;
 
 
     public int size() {
@@ -22,7 +21,6 @@ public class LinkedList<T> {
     public void add(T value) {
         if (isEmpty()) {
             first = new Node(value);
-            last = first;
         } else {
             Node node = first;
             while (node.next != null) {
@@ -72,15 +70,6 @@ public class LinkedList<T> {
         node.next = newNode;
     }
 
-    public void display() {
-        Node node = first;
-        while (node != null) {
-            System.out.println(node.value + " is: ");
-            node = node.next;
-        }
-        System.out.println();
-    }
-
     public boolean search(T value){
         Node node = first;
         while (node != null){
@@ -90,6 +79,15 @@ public class LinkedList<T> {
             node = node.next;
         }
         return false;
+    }
+
+    public void display() {
+        Node node = first;
+        while (node != null) {
+            System.out.print(node.value + " --> ");
+            node = node.next;
+        }
+        System.out.println();
     }
 
 

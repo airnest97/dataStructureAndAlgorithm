@@ -20,13 +20,13 @@ public class LinkedListTest {
     }
 
     @Test
-    void initialListIsEmptyTest(){
-        assertEquals(0, linkedList.size());
+    void linkedListIsEmptyTest(){
+        assertTrue(linkedList.isEmpty());
     }
 
     @Test
-    void linkedListIsEmptyTest(){
-        assertTrue(linkedList.isEmpty());
+    void initialListIsEmptyTest(){
+        assertEquals(0, linkedList.size());
     }
 
     @Test
@@ -118,6 +118,4 @@ public class LinkedListTest {
         linkedList.add("game");
         assertTrue(linkedList.search("man"));
     }
-
-// ("what happens if i have null value, or try to get negative third element, also attempt removing the last value");
 }

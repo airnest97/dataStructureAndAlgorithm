@@ -64,8 +64,7 @@ public class SetTest {
     @Test
     void duplicateElementThrowsExceptionTest(){
         set.add(23);
-        set.add
-                (63);
+        set.add(63);
         set.add(45);
         assertThrows(ElementAlreadyExists.class, () -> set.add(45));
     }
@@ -84,7 +83,7 @@ public class SetTest {
         set.add(63);
         set.add(45);
         set.add(33);
-        set.remove(45);
+        set.remove(3);
         assertEquals(3, set.size());
     }
 

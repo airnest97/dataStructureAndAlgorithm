@@ -6,9 +6,9 @@ import set.Set;
 
 
 public class HashMap {
-    private int sizeOfHashMap;
-    private Set keys;
-    private ArrayList values;
+
+    private final Set keys;
+    private final ArrayList values;
 
     public HashMap() {
         keys = new Set();
@@ -16,17 +16,26 @@ public class HashMap {
     }
 
     public boolean isEmpty() {
-        return sizeOfHashMap == 0;
+        return keys.isEmpty();
     }
 
     public void put(int key, String value) {
-        keys.add(key);
-        values.add(value);
-        sizeOfHashMap++;
+        if (!keys.contains(key)) {
+            //create
+            keys.add(key);
+            values.add(value);
+        } else {
+            //update
+                int index = keys.getIndex(key);//(key) // returns index of the element found
+                values.remove(index);
+                values.add(index, value);
+
+        }
+
     }
 
     public int size() {
-        return sizeOfHashMap;
+        return keys.size();
     }
 
     public int containKey(int key) {
@@ -50,20 +59,15 @@ public class HashMap {
     public void clear() {
         keys.clear();
         values.clear();
-        sizeOfHashMap = 0;
     }
 
-    public boolean removeByKey(int key) {
-        int element;
+    public boolean removeValueByKey(int key) {
         for (int i = 0; i < keys.size(); i++) {
-            if (key == i) {
-//              removeByKey(i);
-//                element = keys.get(i);
-//                keys.removeByIndex(element);
+            if (key == keys.get(i)) {
+                removeKey(key);
             }
             for (int j = 0; j < values.size(); j++) {
                 values.remove(i);
-                sizeOfHashMap--;
                 return true;
             }
         }
@@ -82,14 +86,10 @@ public class HashMap {
         return null;
     }
 
-    public boolean removeKey(int index) {
+    public void removeKey(int index) {
         for (int i = 0; i < keys.size(); i++) {
-            if (index == i) {
-                int key = keys.get(i);
-                keys.remove(key);
-                return true;
-            }
+            if (index == keys.get(i))
+                keys.removeObject(index);
         }
-        return false;
     }
 }

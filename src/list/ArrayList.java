@@ -13,12 +13,9 @@ public class ArrayList implements List {
         }
         if (counter == length) {
             increaseArrayLength();
-            db[counter] = item;
-            counter++;
-        } else {
-            db[counter] = item;
-            counter++;
         }
+        db[counter] = item;
+        counter++;
     }
 
     @Override

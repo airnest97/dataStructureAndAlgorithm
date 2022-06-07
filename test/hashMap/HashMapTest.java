@@ -3,6 +3,8 @@ package hashMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HashMapTest {
@@ -69,11 +71,13 @@ public class HashMapTest {
         hashMap.put(200, "girl");
         hashMap.put(300, "man");
         hashMap.put(400, "lady");
-        assertTrue(hashMap.removeKey(2));
+        hashMap.removeKey(2);
+        assertEquals(3, hashMap.size());
+        assertEquals(400, hashMap.containKey(2));
     }
 
     @Test
-    void CanGetHashMapValueByCorrespondingKeyTest() {
+    void canGetHashMapValueByCorrespondingKeyTest() {
         hashMap.put(100, "boy");
         hashMap.put(200, "girl");
         hashMap.put(300, "man");
@@ -87,8 +91,7 @@ public class HashMapTest {
         hashMap.put(200, "girl");
         hashMap.put(300, "man");
         hashMap.put(400, "lady");
-        assertTrue(hashMap.removeByKey(300));
-        assertEquals(400, hashMap.containKey(2));
+        assertTrue(hashMap.removeValueByKey(300));
         assertEquals("lady", hashMap.containValue(2));
         assertEquals(3, hashMap.size());
     }
@@ -99,5 +102,10 @@ public class HashMapTest {
         hashMap.put(200, "girl");
         hashMap.put(300, "man");
         hashMap.put(400, "lady");
+        hashMap.put(500, "days");
+        hashMap.put(600, "hype");
+        hashMap.removeKey(2);
+        assertEquals("boy", hashMap.containValue(0));
+        assertEquals(100, hashMap.containKey(0));
     }
 }
