@@ -4,6 +4,8 @@ package hashMap;
 import list.ArrayList;
 import set.Set;
 
+import java.util.Objects;
+
 
 public class HashMap {
 
@@ -21,15 +23,12 @@ public class HashMap {
 
     public void put(int key, String value) {
         if (!keys.contains(key)) {
-            //create
             keys.add(key);
             values.add(value);
         } else {
-            //update
-                int index = keys.getIndex(key);//(key) // returns index of the element found
+                int index = keys.findIndexOf(key);
                 values.remove(index);
                 values.add(index, value);
-
         }
 
     }
@@ -38,22 +37,20 @@ public class HashMap {
         return keys.size();
     }
 
-    public int containKey(int key) {
-        int number = 0;
+    public boolean containKey(int key) {
         for (int i = 0; i < keys.size(); i++) {
-            if (key == i)
-                number = keys.get(i);
+            if (key == keys.get(i))
+                return true;
         }
-        return number;
+        return false;
     }
 
-    public String containValue(int index) {
-        String value = null;
+    public boolean containValue(String value) {
         for (int i = 0; i < values.size(); i++) {
-            if (index == i)
-                value = values.get(i);
+            if (Objects.equals(value, values.get(i)))
+                return true;
         }
-        return value;
+        return false;
     }
 
     public void clear() {
@@ -64,9 +61,7 @@ public class HashMap {
     public boolean removeValueByKey(int key) {
         for (int i = 0; i < keys.size(); i++) {
             if (key == keys.get(i)) {
-                removeKey(key);
-            }
-            for (int j = 0; j < values.size(); j++) {
+                keys.remove(key);
                 values.remove(i);
                 return true;
             }
@@ -87,9 +82,6 @@ public class HashMap {
     }
 
     public void removeKey(int index) {
-        for (int i = 0; i < keys.size(); i++) {
-            if (index == keys.get(i))
-                keys.removeObject(index);
-        }
+        removeValueByKey(index);
     }
 }

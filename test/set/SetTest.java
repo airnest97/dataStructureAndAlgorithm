@@ -96,4 +96,16 @@ public class SetTest {
         set.clear();
         assertEquals(0, set.size());
     }
+
+    @Test
+    void remove() {
+        set.add(23);
+        set.add(14);
+        set.add(43);
+        assertTrue(set.contains(14));
+        set.remove(14);
+        assertFalse(set.contains(14));
+        assertEquals(2, set.size());
+
+    }
 }

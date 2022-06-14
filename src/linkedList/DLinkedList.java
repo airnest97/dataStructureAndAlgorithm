@@ -6,19 +6,6 @@ public class DLinkedList<T> {
     private Node<T> tail;
 
 
-    public void addToLast(T data) {
-        var newNode = new Node<>(null, data, null);
-        if (isEmpty()){
-            tail = newNode;
-            head = newNode;
-        }else {
-            newNode.setPrevious(tail);
-            tail.setNext(newNode);
-            tail = newNode;
-        }
-        size++;
-    }
-
     public int size() {
         return size;
     }
@@ -36,6 +23,19 @@ public class DLinkedList<T> {
             head.setPrevious(newNode);
         }
         head = newNode;
+        size++;
+    }
+
+    public void addToLast(T data) {
+        var newNode = new Node<>(null, data, null);
+        if (isEmpty()){
+            tail = newNode;
+            head = newNode;
+        }else {
+            newNode.setPrevious(tail);
+            tail.setNext(newNode);
+            tail = newNode;
+        }
         size++;
     }
 
@@ -59,11 +59,13 @@ public class DLinkedList<T> {
 
         if (head.getData().equals(data)){
             head = head.getNext();
+            size--;
             return;
         }
 
         if (tail.getData().equals(data)){
             tail = tail.getPrevious();
+            size--;
             return;
         }
 
@@ -77,7 +79,32 @@ public class DLinkedList<T> {
                 break;
             }
             temp = temp.getNext();
+            size--;
         }
+    }
+
+    public T get(int index){
+        Node<T> node = head;
+        while (index > 0) {
+            index--;
+            node = node.next;
+        }
+        return node.data;
+    }
+
+    public void addBetween(int position, T data){
+        if (position == 1) {
+            addToFront(data);
+        }
+        Node<T> node = head;
+        int count = 1;
+        while (count < position - 1) {
+            count++;
+            node = node.next;
+        }
+        Node<T> newNode = new Node<>(null, data, null);
+        newNode.next = node.next;
+        node.next = newNode;
     }
 
     public void displayForward(){
@@ -94,6 +121,22 @@ public class DLinkedList<T> {
             System.out.println(temp.data);
             temp = temp.previous;
         }
+    }
+
+    public boolean search(T data) {
+        Node<T> node = head;
+        Node<T> node2 = tail;
+        while (node != null && node2 != null){
+            if (node.getData().equals(data) || node2.getData().equals(data)){
+                return true;
+            }
+            if (node == node2 || node.next == node2){
+                return false;
+            }
+            node = node.next;
+            node2 = node2.previous;
+        }
+        return false;
     }
 
 

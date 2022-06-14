@@ -52,12 +52,17 @@ public class Set {
     }
 
     public void remove(int element) {
-            elements.remove(element);
+        int index = findIndexOf(element);
+        elements.remove(index);
     }
 
-    public void removeObject(Integer element){
-        elements.remove(element);
+    public int findIndexOf(int element) {
+        for(int i = 0; i < elements.size(); i++){
+            if(elements.get(i)== element) return i;
+        }
+        throw new RuntimeException("Element not found");
     }
+
 
     public void clear() {
         elements.clear();

@@ -20,13 +20,13 @@ public class LinkedListTest {
     }
 
     @Test
-    void linkedListIsEmptyTest(){
-        assertTrue(linkedList.isEmpty());
+    void initialListIsEmptyTest(){
+        assertEquals(0, linkedList.size());
     }
 
     @Test
-    void initialListIsEmptyTest(){
-        assertEquals(0, linkedList.size());
+    void linkedListIsEmptyTest(){
+        assertTrue(linkedList.isEmpty());
     }
 
     @Test
