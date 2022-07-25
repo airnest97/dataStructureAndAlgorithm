@@ -14,13 +14,9 @@ public class CustomArrayList {
         }
         if (counter == length) {
             increaseArrayLength();
-            array[counter] = item;
-            counter++;
         }
-        else {
-            array[counter] = item;
-            counter++;
-        }
+        array[counter] = item;
+        counter++;
     }
 
     public String get(int index) {
